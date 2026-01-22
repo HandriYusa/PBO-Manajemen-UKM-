@@ -1,28 +1,13 @@
-// UserController.java
-
 package controller;
 
+import dao.UserDAO;
 import model.User;
 
 public class UserController {
 
-    // Simulasi user aktif (bisa dikembangkan ke DB)
-    private User userAktif;
+    private UserDAO userDAO = new UserDAO();
 
-    public void login(int idUser, String nama, String role) {
-        userAktif = new User(idUser, nama, role);
-    }
-
-    public User getUserAktif() {
-        return userAktif;
-    }
-
-    public boolean isLogin() {
-        return userAktif != null;
-    }
-
-    public void logout() {
-        userAktif = null;
+    public User login(String username, String password) {
+        return userDAO.login(username, password);
     }
 }
-

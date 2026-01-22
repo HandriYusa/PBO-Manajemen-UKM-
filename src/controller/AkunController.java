@@ -1,38 +1,17 @@
-// AkunController.java
 package controller;
 
+import dao.AkunDAO;
 import model.Akun;
-import java.util.ArrayList;
-import java.util.List;
 
 public class AkunController {
 
-    private List<Akun> daftarAkun = new ArrayList<>();
+    private AkunDAO akunDAO = new AkunDAO();
 
-    public void tambahAkun(int id, String namaAkun, double saldoAwal) {
-        Akun akun = new Akun(id, namaAkun, saldoAwal);
-        daftarAkun.add(akun);
-    }
+    public void tambahAkun(String namaAkun, double saldo) {
+        Akun akun = new Akun();
+        akun.setNamaAkun(namaAkun);
+        akun.setSaldo(saldo);
 
-    public List<Akun> getDaftarAkun() {
-        return daftarAkun;
-    }
-
-    public Akun cariAkunById(int idAkun) {
-        for (Akun akun : daftarAkun) {
-            if (akun.getIdAkun() == idAkun) {
-                return akun;
-            }
-        }
-        return null;
-    }
-
-    public double getSaldoAkun(int idAkun) {
-        Akun akun = cariAkunById(idAkun);
-        if (akun != null) {
-            return akun.getSaldo();
-        }
-        return 0;
+        akunDAO.insert(akun);
     }
 }
-
