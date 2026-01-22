@@ -11,7 +11,6 @@ public class AkunController {
         Akun akun = new Akun();
         akun.setNamaAkun(namaAkun);
         akun.setSaldo(saldo);
-
         akunDAO.insert(akun);
     }
 }

@@ -1,18 +1,34 @@
 package view;
 
 import controller.AkunController;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
-public class FormDataAkun extends javax.swing.JFrame {
+public class FormDataAkun extends JFrame {
 
+    private JTextField txtNama = new JTextField(15);
+    private JTextField txtSaldo = new JTextField(10);
     private AkunController controller = new AkunController();
 
-    private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {
-        String nama = txtNamaAkun.getText();
-        double saldo = Double.parseDouble(txtSaldo.getText());
+    public FormDataAkun() {
+        setTitle("Tambah Akun");
+        setSize(300,200);
+        setLocationRelativeTo(null);
 
-        controller.tambahAkun(nama, saldo);
+        JButton simpan = new JButton("Simpan");
+        simpan.addActionListener(e -> {
+            controller.tambahAkun(
+                txtNama.getText(),
+                Double.parseDouble(txtSaldo.getText())
+            );
+            JOptionPane.showMessageDialog(this, "Akun disimpan");
+        });
 
-        JOptionPane.showMessageDialog(this, "Akun berhasil disimpan");
+        JPanel p = new JPanel();
+        p.add(new JLabel("Nama Akun"));
+        p.add(txtNama);
+        p.add(new JLabel("Saldo"));
+        p.add(txtSaldo);
+        p.add(simpan);
+        add(p);
     }
 }

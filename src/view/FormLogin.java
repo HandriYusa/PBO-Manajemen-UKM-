@@ -1,22 +1,21 @@
-import controller.UserController;
-import model.User;
-import javax.swing.JOptionPane;
+package view;
 
-public class FormLogin extends javax.swing.JFrame {
+import javax.swing.*;
 
-    private UserController controller = new UserController();
+public class FormLogin extends JFrame {
 
-    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {
-        String username = txtUsername.getText();
-        String password = txtPassword.getText();
+    public FormLogin() {
+        setTitle("Login");
+        setSize(300,200);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
 
-        User user = controller.login(username, password);
-
-        if (user != null) {
+        JButton btn = new JButton("Masuk");
+        btn.addActionListener(e -> {
             new MainForm().setVisible(true);
-            this.dispose();
-        } else {
-            JOptionPane.showMessageDialog(this, "Login gagal");
-        }
+            dispose();
+        });
+
+        add(btn);
     }
 }
